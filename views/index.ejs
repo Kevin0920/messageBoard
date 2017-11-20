@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  </head>
+  <body>
+    <div class="container">
+      <h2>The Message Board</h2>
+      <hr>
+      <form action="/posts" method="post">
+        <div class="form-group">
+          <label>Name:</label>
+          <input type="text" class="form-control" name="name">
+        </div>
+        <div class="form-group">
+          <label>Message:</label>
+          <textarea name="message" class="form-control" rows="8" cols="80"></textarea>
+        </div>
+          <button type="submit" class="btn btn-primary">Post Message</button>
+      </form>
+      <hr>
+      <div class="container">
+        <% for(let post of posts) { %>
+          <h3>Name: <%= post.name%></h3>
+          <h3>Message: <%= post.message%></h3>
+          <div class="comment">
+            <% for(let comment of post.comments) { %>
+              <h4>Name: <%= comment.name %></h4>
+              <h4>Comment: <%= comment.text %></h4>          
+          <% } %>
+          </div>          
+        <% } %>
+        <br>
+        <hr>
+        <!-- Comment Post Area  -->
+        <form action="/posts" method="post">
+           <div class="form-group">
+               <label for="name">Name:</label>
+               <input type="text" class="form-control"  name="name">
+             </div>
+             <div class="form-group">
+                 <label for="comment">Comment:</label>
+                 <textarea rows="5" class="form-control" cols="15"  name="text"></textarea>
+             </div>  
+             <button type="submit" class="btn btn-success">Post Comment</button>
+       </form>
+      </div>  
+      
+    </div>
+    
+  </body>
+</html>
